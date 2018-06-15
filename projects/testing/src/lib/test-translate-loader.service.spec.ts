@@ -28,25 +28,25 @@ describe('TestTranslateLoader', () => {
 
   let translateLoader: TestTranslateLoader;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        { provide: TestTranslateLoader, useValue: new TestTranslateLoader(TRANSLATIONS) }
-      ]
+  describe('constructor', () => {
+
+    it('should create without translations', () => {
+      translateLoader = new TestTranslateLoader();
+      expect(translateLoader).toBeTruthy();
     });
-  });
 
-  beforeEach(
-    inject([TestTranslateLoader], (loader: TestTranslateLoader) => {
-      translateLoader = loader;
-    })
-  );
+    it('should create with translations', () => {
+      translateLoader = new TestTranslateLoader(TRANSLATIONS);
+      expect(translateLoader).toBeTruthy();
+    });
 
-  it('should create', () => {
-    expect(translateLoader).toBeTruthy();
   });
 
   describe('getTranslation()', () => {
+
+    beforeAll(() => {
+      translateLoader = new TestTranslateLoader(TRANSLATIONS);
+    });
 
     it('should be a function', () => {
       expect(translateLoader.getTranslation).toBeTruthy();

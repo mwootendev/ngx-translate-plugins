@@ -5,7 +5,7 @@ import { Observable, of as observableOf } from 'rxjs';
 import { Translations, LanguageTranslations } from './translations.model';
 
 export class TestTranslateLoader extends TranslateLoader {
-  constructor(private _translations: Translations) {
+  constructor(private _translations: Translations = {}) {
     super();
   }
 
