@@ -1,6 +1,28 @@
 {
   "name": "@ngx-translate/testing",
+  "description": "A library of utilities for testing with the ngx-translate i18n Angular library",
   "version": "0.0.1",
+  "author": {
+    "name": "Michael Wooten"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/mwootendev/ngx-translate-testing",
+  "repository": {
+    "type": "git",
+    "url": "git+https:/github.com/mwootendev/ngx-translate-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mwootendev/ngx-translate-testing/issues"
+  },
+  "keywords": [
+    "angular",
+    "translate",
+    "translations",
+    "i18n",
+    "ngx-translate",
+    "testing",
+    "test"
+  ],
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
     "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
