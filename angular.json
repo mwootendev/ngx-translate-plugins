@@ -163,6 +163,5 @@
       }
     }
   },
-  "defaultProject": "ngx-translate-testing",
-  "packageManager": "yarn"
+  "defaultProject": "ngx-translate-testing"
 }
