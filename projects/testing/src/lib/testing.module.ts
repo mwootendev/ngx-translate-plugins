@@ -17,8 +17,6 @@ import { LanguageTranslations, Translations } from './translations.model';
  * test environment.
  *
  * @export
- * @class TranslateTestingModule
- * @implements {ModuleWithProviders}
  */
 @NgModule({
   imports: [TranslateModule],
@@ -44,7 +42,7 @@ export class TranslateTestingModule implements ModuleWithProviders {
    * @static
    * @param {string} language the language for the translations.
    * @param {Translations} translations the translations to be used in the tests.
-   * @returns {TranslateTestingModule} the new instance that can be used to chain additional configuration.
+   * @returns the new instance that can be used to chain additional configuration.
    * @memberof TranslateTestingModule
    */
   public static withTranslations(
@@ -66,7 +64,7 @@ export class TranslateTestingModule implements ModuleWithProviders {
    *
    * @static
    * @param {Translations} the language translations the translations to be used in the tests.
-   * @returns {TranslateTestingModule} the new instance that can be used to chain additional configuration.
+   * @returns the new instance that can be used to chain additional configuration.
    * @memberof TranslateTestingModule
    */
   public static withTranslations(translations: Translations): TranslateTestingModule;
@@ -123,7 +121,7 @@ export class TranslateTestingModule implements ModuleWithProviders {
    *   .withTranslations(SPANISH_TRANSLATIONS);
    *
    * @param {Translations} translations the additional translations to add to the testing service.
-   * @returns {TranslateTestingModule} the instance that can be used to chain additional configuration.
+   * @returns the instance that can be used to chain additional configuration.
    * @memberof TranslateTestingModule
    */
   public withTranslations(translations: Translations): TranslateTestingModule;
@@ -146,9 +144,13 @@ export class TranslateTestingModule implements ModuleWithProviders {
    *
    * @param {string} language the language for which the new translations are being added.
    * @param {LanguageTranslations} translations the translations for the specified language.
+   * @returns the instance that can be used to chain additional configuration.
    * @memberof TranslateTestingModule
    */
-  public withTranslations(language: string, translations: LanguageTranslations);
+  public withTranslations(
+    language: string,
+    translations: LanguageTranslations
+  ): TranslateTestingModule;
 
   public withTranslations(
     languageOrTranslations: string | Translations,
