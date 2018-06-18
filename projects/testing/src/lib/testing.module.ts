@@ -27,6 +27,8 @@ import { LanguageTranslations, Translations } from './translations.model';
 export class TranslateTestingModule implements ModuleWithProviders {
   private _translations: Translations = {};
 
+  private _defaultLanguage: string;
+
   /**
    * Creates a new instance of the {TranslateTestingModule} with translations for the specified language.
    *
@@ -87,18 +89,24 @@ export class TranslateTestingModule implements ModuleWithProviders {
   }
 
   public get providers() {
+    const translateService = new TranslateService(
+      null,
+      new TestTranslateLoader(this._translations),
+      new TranslateFakeCompiler(),
+      new TranslateDefaultParser(),
+      new FakeMissingTranslationHandler(),
+      true,
+      true
+    );
+
+    if (this._defaultLanguage) {
+      translateService.setDefaultLang(this._defaultLanguage);
+    }
+
     return [
       {
         provide: TranslateService,
-        useValue: new TranslateService(
-          null,
-          new TestTranslateLoader(this._translations),
-          new TranslateFakeCompiler(),
-          new TranslateDefaultParser(),
-          new FakeMissingTranslationHandler(),
-          true,
-          true
-        )
+        useValue: translateService
       }
     ];
   }
@@ -148,6 +156,7 @@ export class TranslateTestingModule implements ModuleWithProviders {
   ): TranslateTestingModule {
     if (typeof languageOrTranslations === 'string' && translations) {
       this.addTranslations(languageOrTranslations, translations);
+      this._defaultLanguage = languageOrTranslations;
     } else if (languageOrTranslations) {
       Object.keys(languageOrTranslations).forEach(language =>
         this.addTranslations(language, languageOrTranslations[language])
@@ -157,6 +166,10 @@ export class TranslateTestingModule implements ModuleWithProviders {
   }
 
   private addTranslations(language: string, translations: LanguageTranslations) {
+    if (!this._defaultLanguage) {
+      this._defaultLanguage = language;
+    }
+
     if (this._translations[language]) {
       this._translations[language] = {
         ...this._translations[language],
