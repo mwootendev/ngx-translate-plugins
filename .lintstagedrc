@@ -1,0 +1,14 @@
+{
+  "*.ts": [
+    "prettier --write",
+    "git add"
+  ],
+  "src/**/*.ts": [
+    "ng lint ngx-translate-testing --fix",
+    "git add"
+  ],
+  "projects/testing/src/**/*.ts": [
+    "ng lint testing --fix",
+    "git add"
+  ]
+}
