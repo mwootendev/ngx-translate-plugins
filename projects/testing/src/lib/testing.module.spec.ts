@@ -211,4 +211,32 @@ describe('TranslateTestingModule', () => {
       });
     });
   });
+
+  describe('withDefaultLanguage()', () => {
+    beforeEach(() => {
+      translateModule = TranslateTestingModule.withTranslations(TRANSLATIONS).withDefaultLanguage(
+        SPANISH_LANGUAGE
+      );
+    });
+
+    describe('provided TranslateService', () => {
+      let translateService: TranslateService;
+
+      beforeEach(() => {
+        translateService = translateModule.providers[0].useValue;
+      });
+
+      it('should override the default language', () => {
+        expect(translateService.defaultLang).toBe(SPANISH_LANGUAGE);
+      });
+
+      it('should use the translations for the overridden language', () => {
+        expect(translateService.instant(GREETING_KEY)).toEqual(
+          TRANSLATIONS[SPANISH_LANGUAGE][GREETING_KEY]
+        );
+      });
+    });
+  });
+
+  describe('withCompiler()', () => {});
 });
