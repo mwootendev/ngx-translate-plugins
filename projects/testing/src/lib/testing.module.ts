@@ -5,7 +5,8 @@ import {
   TranslateDefaultParser,
   TranslateFakeCompiler,
   TranslateModule,
-  TranslateService
+  TranslateService,
+  TranslateCompiler
 } from '@ngx-translate/core';
 
 import { TestTranslateLoader } from './test-translate-loader.service';
@@ -26,6 +27,8 @@ export class TranslateTestingModule implements ModuleWithProviders {
   private _translations: Translations = {};
 
   private _defaultLanguage: string;
+
+  private _compiler: TranslateCompiler;
 
   /**
    * Creates a new instance of the {TranslateTestingModule} with translations for the specified language.
@@ -90,7 +93,7 @@ export class TranslateTestingModule implements ModuleWithProviders {
     const translateService = new TranslateService(
       null,
       new TestTranslateLoader(this._translations),
-      new TranslateFakeCompiler(),
+      this._compiler || new TranslateFakeCompiler(),
       new TranslateDefaultParser(),
       new FakeMissingTranslationHandler(),
       true,
@@ -164,6 +167,43 @@ export class TranslateTestingModule implements ModuleWithProviders {
         this.addTranslations(language, languageOrTranslations[language])
       );
     }
+    return this;
+  }
+
+  /**
+   * Updates the {TranslationTestingModule} to provide a {TranslateService} that will
+   * use the provided {TranslateCompiler} to translate the test translations.
+   *
+   * @example
+   *
+   * TranslateTestingModule.withTranslations('en', {people: '{gender, select, male{He is} female{She is} other{They are}} {how})'})
+   *   .withCompiler(new TranslateMessageFormatCompiler());
+   *
+   * @param compiler the compiler to use to compile the test translations.
+   * @returns the instance that can be used to chain additional configuration.
+   * @memberof TranslateTestingModule
+   */
+  public withCompiler(compiler: TranslateCompiler): TranslateTestingModule {
+    this._compiler = compiler;
+    return this;
+  }
+
+  /**
+   * Updates the {TranslateTestingModule} to use the provided language as the default language.
+   * By default, the default language will be set to the first language provided.
+   *
+   * @example
+   *
+   * TranslateTestingModule.withTranslations('es', SPANISH_TRANSLATIONS)
+   *   .withTranslations('en', ENGLISH_TRANSLATIONS)
+   *   .withDefaultLanguage('en');
+   *
+   * @param language the new default language for translations.
+   * @returns the instance that can be used to chain additional configuration.
+   * @memberof TranslateTestingModule
+   */
+  public withDefaultLanguage(language: string): TranslateTestingModule {
+    this._defaultLanguage = language || this._defaultLanguage;
     return this;
   }
 

@@ -6,6 +6,7 @@ import { TranslateTestingModule } from '@ngx-translate/testing';
 
 import { AppComponent } from './app.component';
 import { TranslateService } from '@ngx-translate/core';
+import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 
 describe('AppComponent', () => {
   const ENGLISH_LANGUAGE = 'en';
@@ -19,10 +20,9 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        TranslateTestingModule.withTranslations(
-          ENGLISH_LANGUAGE,
-          ENGLISH_TRANSLATIONS
-        ).withTranslations(SPANISH_LANGUAGE, SPANISH_TRANSLATIONS)
+        TranslateTestingModule.withTranslations(ENGLISH_LANGUAGE, ENGLISH_TRANSLATIONS)
+          .withTranslations(SPANISH_LANGUAGE, SPANISH_TRANSLATIONS)
+          .withCompiler(new TranslateMessageFormatCompiler())
       ],
       declarations: [AppComponent]
     }).compileComponents();
@@ -57,6 +57,18 @@ describe('AppComponent', () => {
       expect(element).toBeTruthy();
       expect(element.nativeNode.textContent).toEqual(ENGLISH_TRANSLATIONS.phrases.please);
     }));
+
+    it('should render the thanks translation for plural values', async(() => {
+      const element = debugElement.query(By.css('#thanks-plural-female-translation'));
+      expect(element).toBeTruthy();
+      expect(element.nativeNode.textContent).toEqual('Thank you, my friends.');
+    }));
+
+    it('should render the thanks translation for a single value', async(() => {
+      const element = debugElement.query(By.css('#thanks-singular-male-translation'));
+      expect(element).toBeTruthy();
+      expect(element.nativeNode.textContent).toEqual('Thank you, my friend.');
+    }));
   });
 
   describe('with Spanish translations', () => {
@@ -78,10 +90,21 @@ describe('AppComponent', () => {
     }));
 
     it('should render the service translation', async(() => {
-      fixture.detectChanges();
       const element = debugElement.query(By.css('#service-translation'));
       expect(element).toBeTruthy();
       expect(element.nativeNode.textContent).toEqual(SPANISH_TRANSLATIONS.phrases.please);
+    }));
+
+    it('should render the thanks translation for plural values', async(() => {
+      const element = debugElement.query(By.css('#thanks-plural-female-translation'));
+      expect(element).toBeTruthy();
+      expect(element.nativeNode.textContent).toEqual('Gracias, mi amigas.');
+    }));
+
+    it('should render the thanks translation for a single value', async(() => {
+      const element = debugElement.query(By.css('#thanks-singular-male-translation'));
+      expect(element).toBeTruthy();
+      expect(element.nativeNode.textContent).toEqual('Gracias, mi amigo.');
     }));
   });
 });

@@ -3,6 +3,6 @@
     "greeting": "Hola",
     "farewell": "Adios",
     "please": "Por favor",
-    "thanks": "Gracias."
+    "thanks": "Gracias, {count, plural, =0{nadie} one{{gender, select, female{mi amiga} other{mi amigo}}} other{{gender, select, female{mi amigas} other{mi amigos}}}}."
   }
 }
