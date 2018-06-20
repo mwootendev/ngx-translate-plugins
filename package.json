@@ -1,5 +1,5 @@
 {
-  "name": "ngx-translate-testing",
+  "name": "ngx-translate-plugins",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

@@ -6,13 +6,13 @@
     "name": "Michael Wooten"
   },
   "license": "MIT",
-  "homepage": "https://github.com/mwootendev/ngx-translate-testing",
+  "homepage": "https://github.com/mwootendev/ngx-translate-plugins",
   "repository": {
     "type": "git",
-    "url": "git+https:/github.com/mwootendev/ngx-translate-testing.git"
+    "url": "git+https:/github.com/mwootendev/ngx-translate-plugins.git"
   },
   "bugs": {
-    "url": "https://github.com/mwootendev/ngx-translate-testing/issues"
+    "url": "https://github.com/mwootendev/ngx-translate-plugins/issues"
   },
   "keywords": [
     "angular",
