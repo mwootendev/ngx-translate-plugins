@@ -9,6 +9,8 @@
     "build:lib": "ng build testing",
     "build:lib:prod": "yarn run build:lib --prod",
     "clean": "rimraf dist/",
+    "coverage:app": "yarn run test:app --code-coverage true",
+    "coverage:lib": "yarn run test:lib --code-coverage true",
     "pretest": "yarn run build:lib",
     "test": "yarn run test:lib --single-run true && yarn run test:app --single-run true",
     "test:app": "ng test",
