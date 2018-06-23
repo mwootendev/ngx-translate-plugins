@@ -22,6 +22,12 @@
       ],
       "ngx-translate-testing/*": [
         "dist/testing/*"
+      ],
+      "ngx-translate-l10n": [
+        "dist/l10n"
+      ],
+      "ngx-translate-l10n/*": [
+        "dist/l10n/*"
       ]
     }
   }

@@ -161,6 +161,46 @@
           }
         }
       }
+    },
+    "l10n": {
+      "root": "projects/l10n",
+      "sourceRoot": "projects/l10n/src",
+      "projectType": "library",
+      "prefix": "mew",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/l10n/tsconfig.lib.json",
+            "project": "projects/l10n/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/l10n/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/l10n/src/test.ts",
+            "tsConfig": "projects/l10n/tsconfig.spec.json",
+            "karmaConfig": "projects/l10n/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/l10n/tsconfig.lib.json",
+              "projects/l10n/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-translate-plugins"
