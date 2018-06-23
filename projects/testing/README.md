@@ -1,27 +1,108 @@
-# NgxTranslateTesting
+# @ngx-tranlate/testing
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+Unit testing utilities for the [ngx-translate](http//www.ngx-translate.com)  internationalization (i18n) library for Angular.
 
-## Development server
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Installation
 
-## Code scaffolding
+Currently, `@ngx-translate/testing` is compatible with Angular 6+ and `@ngx-translate/core` 10+. Prior versions of Angular and `ngx-translate` are not supported.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The `@ngx-translate/testing` module needs to be installed as a test dependency using your favorite NPM client.
 
-## Build
+```sh
+npm install @ngx-translate/testing --save-dev
+```
+or
+```sh
+yarn add @ngx-translate/testing --dev
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Usage
 
-## Running unit tests
+### TranslateTestingModule
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The `TranslateTestingModule` class can provide all of the capabilities of the `ngx-translate` `TranslateModule` (translation directives, pipes,and services) and easily be configured with translations for your test cases.
 
-## Running end-to-end tests
+The module can easily be imported into your test cases:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```ts
+import { TranslateTestingModule } from '@ngx-translate/testing';
+```
 
-## Further help
+#### JavaScript Translation Objects
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The first way to configure the testing module is with hard-coded JavaScript objects for translations. At the root of the object you 
+provide language codes, with any structures nested underneath representing the translations keys or values.
+
+```ts
+const ENGLISH_LANGUAGE = 'en';
+const ENGLISH_TRANSLATIONS = {
+  pleasantries: {
+    greeting: 'Hello',
+    appreciation: 'Thank You!'
+  }
+};
+
+const SPANISH_LANGUAGE = 'es';
+const SPANISH_TRANSLATIONS = {
+  pleasantries: {
+    greeting: 'Hola',
+    appreciation: 'Gracias'
+  }
+};
+
+const TRANSLATIONS = {
+  [ENGLISH_LANGUAGE]: ENGLISH_TRANSLATIONS,
+  [SPANISH_LANGUAGE]: SPANISH_TRANSLATIONS 
+};
+```
+
+The TranslateTestingModule is initialized using the static `withTranslations()` method. The method can either accept a complete
+translations structure
+
+```ts
+TranslateTestingModule.withTranslations(TRANSLATIONS)
+```
+
+or the individual language translations separately
+
+```ts
+TranslateTestingModule.withTranslations(ENGLISH_LANGUAGE, ENGLISH_TRANSLATIONS)
+```
+
+The module also provides `withTranslations()` instance methods that can be chained to add additional languages or additional translations for a language (via a shallow merge).
+
+```ts
+TranslateTestingModule.withTranslations(ENGLISH_LANGUAGE, ENGLISH_TRANSLATIONS)
+  .withTranslations(SPANISH_LANGUAGE, SPANISH_TRANSLATIONS)
+  .withTranslations(ENGLISH_LANGUAGE, require('../../assets/i18n/en.json'))
+```
+
+#### Default Language
+
+The TranslateTestingModule will set the default language to the first language it is provided. If `withTranslations()` is called with an explicit language (e.g. `withTranslations('en', ENGLISH)`) then the default language will be set to that language code. If a complete translations object is provided (e.g. `withTranslations({en: ENGLISH, es: SPANISH})`) then the first language key will be used.
+
+The default language can be overridden using the `withDefaultLanguage()` instance method to explicitly define the default language.
+
+```ts
+TranslateTestingModule
+  .withTranslations({en: ENGLISH, es: SPANISH})
+  .withDefaultLanguage('es')
+```
+
+#### Custom Compiler
+
+Be default, the `TranslateTestingModule` will use the `TranslateFakeCompiler` instance. If your translations use a custom compiler, such as the [ngx-translate-messageformat-compiler](https://github.com/lephyrus/ngx-translate-messageformat-compiler), you can specify the compiler with the `withCompiler()` instance method.
+
+```ts
+TranslateTestingModule
+  .withTranslations('en', require('../../assets/i18n/en_msgfmt.json'))
+  .withCompiler(new TranslateMessageFormatCompiler())
+```
+
+## License
+Licensed under MIT
