@@ -16,7 +16,7 @@
     "test:app": "ng test --project=ngx-translate-plugins",
     "test:lib": "ng test --project=testing",
     "lint": "yarn run lint:lib && yarn run lint:app",
-    "lint:app": "ng lint",
+    "lint:app": "ng lint --project=ngx-translate-plugins",
     "lint:lib": "ng lint --project=testing",
     "e2e": "ng e2e",
     "precommit": "lint-staged"
