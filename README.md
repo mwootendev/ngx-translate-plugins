@@ -5,9 +5,9 @@ The `ngx-translate-plugins` application is designed to serve as a demo applicati
 
 ## Subprojects
 
-### @ngx-translate/testing
+### ngx-translate-testing
 
-The [@ngx-translate/testing](projects/testing/README.md) library provides utilities for unit testing with translations.
+The [ngx-translate-testing](projects/testing/README.md) library provides utilities for unit testing with translations.
 
 ## Development
 
@@ -22,4 +22,4 @@ Run `yarn run start:app` or `npm run start:app` for a development server with th
 Unit tests for the demo application can be run using `yarn run test:app` or `npm run test:app`. If you would like a coverage 
 report printed after the test cases execute, use the `yarn run coverage:app` or `npm run coverage:app` scripts.
 
-Unit tests for the `@ngx-translate/testing` library can be run using `yarn run test:lib` or `npm run test:lib`. For library code coverage, the `yarn run coverage:lib` or `npm run coverage:lib` scripts are also available.
+Unit tests for the `ngx-translate-testing` library can be run using `yarn run test:lib` or `npm run test:lib`. For library code coverage, the `yarn run coverage:lib` or `npm run coverage:lib` scripts are also available.

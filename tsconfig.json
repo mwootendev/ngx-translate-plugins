@@ -17,10 +17,10 @@
       "dom"
     ],
     "paths": {
-      "@ngx-translate/testing": [
+      "ngx-translate-testing": [
         "dist/testing"
       ],
-      "@ngx-translate/testing/*": [
+      "ngx-translate-testing/*": [
         "dist/testing/*"
       ]
     }

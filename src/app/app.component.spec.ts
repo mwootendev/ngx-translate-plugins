@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { TestBed, async, inject, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { TranslateTestingModule } from '@ngx-translate/testing';
+import { TranslateTestingModule } from 'ngx-translate-testing';
 
 import { AppComponent } from './app.component';
 import { TranslateService } from '@ngx-translate/core';

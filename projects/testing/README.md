@@ -9,16 +9,16 @@ Unit testing utilities for the [ngx-translate](http//www.ngx-translate.com)  int
 
 ## Installation
 
-Currently, `@ngx-translate/testing` is compatible with Angular 6+ and `@ngx-translate/core` 10+. Prior versions of Angular and `ngx-translate` are not supported.
+Currently, `ngx-translate-testing` is compatible with Angular 6+ and `@ngx-translate/core` 10+. Prior versions of Angular and `ngx-translate` are not supported.
 
-The `@ngx-translate/testing` module needs to be installed as a test dependency using your favorite NPM client.
+The `ngx-translate-testing` module needs to be installed as a test dependency using your favorite NPM client.
 
 ```sh
-npm install @ngx-translate/testing --save-dev
+npm install ngx-translate-testing --save-dev
 ```
 or
 ```sh
-yarn add @ngx-translate/testing --dev
+yarn add ngx-translate-testing --dev
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ The `TranslateTestingModule` class can provide all of the capabilities of the `n
 The module can easily be imported into your test cases:
 
 ```ts
-import { TranslateTestingModule } from '@ngx-translate/testing';
+import { TranslateTestingModule } from 'ngx-translate-testing';
 ```
 
 #### JavaScript Translation Objects

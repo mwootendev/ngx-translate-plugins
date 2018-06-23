@@ -1,5 +1,5 @@
 {
-  "name": "@ngx-translate/testing",
+  "name": "ngx-translate-testing",
   "description": "A library of utilities for testing with the ngx-translate i18n Angular library",
   "version": "1.0.0",
   "author": {
