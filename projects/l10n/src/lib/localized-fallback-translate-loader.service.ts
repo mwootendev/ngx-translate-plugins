@@ -11,7 +11,7 @@ import { getBaseLanguage } from './utilities';
 })
 export class LocalizedFallbackTranslateLoader implements TranslateLoader {
 
-  constructor(@Inject(TranslateLoader) private _parentLoader: TranslateLoader) { }
+  constructor(private _parentLoader: TranslateLoader) { }
 
   public getTranslation(lang: string): Observable<any> {
     console.log(this._parentLoader);
