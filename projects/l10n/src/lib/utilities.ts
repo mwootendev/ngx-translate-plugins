@@ -4,7 +4,7 @@
  * will result in a null value.
  *
  * @export
- * @param {string} languageCode the language code that may contain a delimited localization.
+ * @param languageCode the language code that may contain a delimited localization.
  * @returns the base location code for a delimited localized language,
  *          the original language code if not localized, or null if the provided code is null.
  */

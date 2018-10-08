@@ -12,8 +12,8 @@ export class AppComponent {
   please: Observable<string>;
 
   constructor(translate: TranslateService) {
-    translate.setDefaultLang('en');
-    translate.use('en');
+    translate.setDefaultLang('en_FR');
+    translate.use('en_FR');
 
     this.please = translate.stream('phrases.please');
   }

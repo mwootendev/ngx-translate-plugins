@@ -1,0 +1,8 @@
+{
+  "phrases": {
+    "greeting": "G'day, mate",
+    "farewell": "Hoo roo",
+    "please": "Please",
+    "thanks": "Cheers, {count, plural, =0{no one} one{my friend} other{my friends}}."
+  }
+}

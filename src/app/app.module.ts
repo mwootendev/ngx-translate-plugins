@@ -7,9 +7,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 
 import { AppComponent } from './app.component';
+import { LocalizedFallbackTranslateLoader } from 'ngx-translate-l10n';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new LocalizedFallbackTranslateLoader(new TranslateHttpLoader(http));
 }
 
 @NgModule({
@@ -18,10 +19,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     HttpClientModule,
     TranslateModule.forRoot({
-      compiler: {
-        provide: TranslateCompiler,
-        useClass: TranslateMessageFormatCompiler
-      },
+      // compiler: {
+      //   provide: TranslateCompiler,
+      //   useClass: TranslateMessageFormatCompiler
+      // },
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
