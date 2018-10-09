@@ -21,7 +21,7 @@ import { getBaseLanguage } from './utilities';
   providedIn: 'root'
 })
 export class LocalizedFallbackTranslateLoader implements TranslateLoader {
-  
+
   /**
    * Creates an instance of LocalizedFallbackTranslateLoader.
    *
@@ -41,7 +41,6 @@ export class LocalizedFallbackTranslateLoader implements TranslateLoader {
    * @memberof LocalizedFallbackTranslateLoader
    */
   public getTranslation(lang: string): Observable<any> {
-    console.log(this._parentLoader);
     return this._parentLoader.getTranslation(lang).pipe(
       catchError(error => {
         const baseLanguage = getBaseLanguage(lang);
