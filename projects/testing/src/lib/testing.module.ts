@@ -74,7 +74,7 @@ export class TranslateTestingModule implements ModuleWithProviders {
 
   public static withTranslations(
     languageOrTranslations: string | Translations,
-    translations?: Translations
+    translations?: LanguageTranslations
   ): TranslateTestingModule {
     const translateTestingModule = new TranslateTestingModule();
 
@@ -157,7 +157,7 @@ export class TranslateTestingModule implements ModuleWithProviders {
 
   public withTranslations(
     languageOrTranslations: string | Translations,
-    translations?: Translations
+    translations?: LanguageTranslations
   ): TranslateTestingModule {
     if (typeof languageOrTranslations === 'string' && translations) {
       this.addTranslations(languageOrTranslations, translations);

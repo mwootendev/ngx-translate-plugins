@@ -9,7 +9,13 @@ Unit testing utilities for the [ngx-translate](http//www.ngx-translate.com)  int
 
 ## Installation
 
-Currently, `ngx-translate-testing` is compatible with Angular 6+ and `@ngx-translate/core` 10+. Prior versions of Angular and `ngx-translate` are not supported.
+Currently, `ngx-translate-testing` is compatible with Angular 6+ and `@ngx-translate/core` 10+. Prior versions of Angular and `ngx-translate` are not supported. See the version table below for more details.
+
+| Angular | @ngx-translate/core | ngx-translate-testing |
+|:-------:|:-------------------:|:---------------------:|
+|  6.0.0  |        10.0.0       |         1.0.0         |
+|  7.0.0  |        11.0.0       |         2.0.0         |
+
 
 The `ngx-translate-testing` module needs to be installed as a test dependency using your favorite NPM client.
 
