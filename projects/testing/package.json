@@ -7,10 +7,7 @@
   },
   "license": "MIT",
   "homepage": "https://github.com/mwootendev/ngx-translate-plugins",
-  "repository": {
-    "type": "git",
-    "url": "git+https:/github.com/mwootendev/ngx-translate-plugins.git"
-  },
+  "repository": "https:/github.com/mwootendev/ngx-translate-plugins.git",
   "bugs": {
     "url": "https://github.com/mwootendev/ngx-translate-plugins/issues"
   },
