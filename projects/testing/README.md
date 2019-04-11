@@ -39,6 +39,18 @@ The module can easily be imported into your test cases:
 import { TranslateTestingModule } from 'ngx-translate-testing';
 ```
 
+To use the TranslateService provide by the TranslateTestingModule, get it from the module instance:
+
+```ts
+const translateModule = TranslateTestingModule.withTranslations('en', { });
+TestBed.configureTestingModule({
+  imports: [
+    TranslateTestingModule
+  ],
+  providers: [ translateModule.providers ]
+})
+```
+
 #### JavaScript Translation Objects
 
 The first way to configure the testing module is with hard-coded JavaScript objects for translations. At the root of the object you 
