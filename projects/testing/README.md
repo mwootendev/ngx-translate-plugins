@@ -1,4 +1,4 @@
-# ngx-tranlate-testing
+# ngx-translate-testing
 
 Unit testing utilities for the [ngx-translate](http//www.ngx-translate.com)  internationalization (i18n) library for Angular.
 
