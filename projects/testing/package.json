@@ -1,7 +1,7 @@
 {
   "name": "ngx-translate-testing",
   "description": "A library of utilities for testing with the ngx-translate i18n Angular library",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "author": {
     "name": "Michael Wooten"
   },
@@ -21,9 +21,9 @@
     "test"
   ],
   "peerDependencies": {
-    "@angular/common": "^7.0.0-rc.0 || ^7.0.0",
-    "@angular/core": "^7.0.0-rc.0 || ^7.0.0",
+    "@angular/common": "^8.0.0-rc.0 || ^8.0.0",
+    "@angular/core": "^8.0.0-rc.0 || ^8.0.0",
     "@ngx-translate/core": "^11.0.0",
-    "rxjs": "^6.3.0"
+    "rxjs": "^6.3.3"
   }
 }

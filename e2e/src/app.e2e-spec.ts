@@ -9,6 +9,6 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to ngx-translate-testing!');
+    expect(page.getParagraphText()).toEqual('Welcome to The Translate Plugins Demo Application.');
   });
 });
