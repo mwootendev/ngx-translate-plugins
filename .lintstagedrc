@@ -1,5 +1,5 @@
 {
-  "./src/**/*.ts": [
+  "src/**/*.ts": [
     "prettier --write",
     "ng lint ngx-translate-plugins --fix --files",
     "git add"
