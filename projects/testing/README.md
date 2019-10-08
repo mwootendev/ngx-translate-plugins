@@ -15,6 +15,7 @@ Currently, `ngx-translate-testing` is compatible with Angular 6+ and `@ngx-trans
 |:-------:|:-------------------:|:---------------------:|
 |  6.0.0  |        10.0.0       |         1.0.0         |
 |  7.0.0  |        11.0.0       |         2.0.0         |
+|  8.0.0  |        11.0.0       |         3.0.0         |
 
 
 The `ngx-translate-testing` module needs to be installed as a test dependency using your favorite NPM client.
@@ -41,7 +42,7 @@ import { TranslateTestingModule } from 'ngx-translate-testing';
 
 #### JavaScript Translation Objects
 
-The first way to configure the testing module is with hard-coded JavaScript objects for translations. At the root of the object you 
+The first way to configure the testing module is with hard-coded JavaScript objects for translations. At the root of the object you
 provide language codes, with any structures nested underneath representing the translations keys or values.
 
 ```ts
@@ -63,7 +64,7 @@ const SPANISH_TRANSLATIONS = {
 
 const TRANSLATIONS = {
   [ENGLISH_LANGUAGE]: ENGLISH_TRANSLATIONS,
-  [SPANISH_LANGUAGE]: SPANISH_TRANSLATIONS 
+  [SPANISH_LANGUAGE]: SPANISH_TRANSLATIONS
 };
 ```
 

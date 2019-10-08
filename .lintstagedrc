@@ -1,7 +1,7 @@
 {
   "src/**/*.ts": [
     "prettier --write",
-    "ng lint ngx-translate-plugins --fix",
+    "ng lint ngx-translate-plugins --fix --files",
     "git add"
   ],
   "projects/testing/src/**/*.ts": [
