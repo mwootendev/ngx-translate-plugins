@@ -113,3 +113,8 @@ TranslateTestingModule
 
 ## License
 Licensed under MIT
+
+## Contributors
+
+* Michael Wooten ([@mwootendev](https://github.com/mwootendev))
+* Paulo Soares ([@7jpsan](https://github.com/7jpsan))
