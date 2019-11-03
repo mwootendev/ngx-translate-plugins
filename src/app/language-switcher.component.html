@@ -1,0 +1,5 @@
+<div class="language-switcher">
+  <ng-container *ngFor="let language of languages">
+    <button class="language button" [class.active]="(currentLanguage | async) == language.code" (click)="onLanguageSelected(language.code)">{{language.name}}</button>
+  </ng-container>
+</div>

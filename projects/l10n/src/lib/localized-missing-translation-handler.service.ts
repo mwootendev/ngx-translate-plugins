@@ -26,7 +26,7 @@ export class LocalizedMissingTranslationHandler extends MissingTranslationHandle
     const baseLanguage = getBaseLanguage(translateService.currentLang);
 
     if (baseLanguage !== currentLanguage) {
-      if (translateService.getLangs().includes(baseLanguage)) {
+      if (translateService.getLangs().indexOf(baseLanguage) > 0) {
         return translateService.getParsedResult(
           translateService.translations[baseLanguage],
           missingTranslationKey,

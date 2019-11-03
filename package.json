@@ -15,7 +15,7 @@
     "coverage:testing": "yarn run test:testing --code-coverage true",
     "coverage:l10n": "yarn run test:l10n --code-coverage true",
     "pretest": "yarn run build:testing",
-    "test": "yarn run test:testing --single-run true && yarn run test:demo --single-run true",
+    "test": "yarn run test:testing && yarn run test:l10n && yarn run test:demo",
     "test:demo": "ng test --project=ngx-translate-plugins",
     "test:testing": "ng test --project=testing",
     "test:l10n": "ng test --project=l10n",

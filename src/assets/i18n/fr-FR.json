@@ -1,0 +1,6 @@
+{
+  "phrases": {
+    "greeting": "Salut",
+    "thanks": "Thank you, {count, plural, =0{no one} one{my friend} other{my friends}}."
+  }
+}

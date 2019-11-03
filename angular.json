@@ -78,7 +78,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
-            ]
+            ],
+            "watch": false
           }
         },
         "lint": {
@@ -145,7 +146,8 @@
           "options": {
             "main": "projects/testing/src/test.ts",
             "tsConfig": "projects/testing/tsconfig.spec.json",
-            "karmaConfig": "projects/testing/karma.conf.js"
+            "karmaConfig": "projects/testing/karma.conf.js",
+            "watch": false
           }
         },
         "lint": {
@@ -185,7 +187,8 @@
           "options": {
             "main": "projects/l10n/src/test.ts",
             "tsConfig": "projects/l10n/tsconfig.spec.json",
-            "karmaConfig": "projects/l10n/karma.conf.js"
+            "karmaConfig": "projects/l10n/karma.conf.js",
+            "watch": false
           }
         },
         "lint": {
