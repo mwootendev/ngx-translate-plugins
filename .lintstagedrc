@@ -8,5 +8,10 @@
     "prettier --write",
     "ng lint testing --fix",
     "git add"
+  ],
+  "projects/missing-translations/src/**/*.ts": [
+    "prettier --write",
+    "ng lint missing-translations --fix",
+    "git add"
   ]
 }

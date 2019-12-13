@@ -161,6 +161,46 @@
           }
         }
       }
+    },
+    "missing-translations": {
+      "root": "projects/missing-translations",
+      "sourceRoot": "projects/missing-translations/src",
+      "projectType": "library",
+      "prefix": "mew",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/missing-translations/tsconfig.lib.json",
+            "project": "projects/missing-translations/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/missing-translations/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/missing-translations/src/test.ts",
+            "tsConfig": "projects/missing-translations/tsconfig.spec.json",
+            "karmaConfig": "projects/missing-translations/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/missing-translations/tsconfig.lib.json",
+              "projects/missing-translations/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ngx-translate-plugins"
