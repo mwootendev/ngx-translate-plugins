@@ -24,6 +24,12 @@
       ],
       "ngx-translate-testing/*": [
         "dist/testing/*"
+      ],
+      "ngx-translate-missing-translations": [
+        "dist/missing-translations"
+      ],
+      "ngx-translate-missing-translations/*": [
+        "dist/missing-translations/*"
       ]
     }
   }
