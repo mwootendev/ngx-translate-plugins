@@ -1,3 +1,5 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/mwootendev/ngx-translate-plugins) 
+
 # ngx-translate-plugins
 
 The `ngx-translate-plugins` application is designed to serve as a demo application and test bed for plugins related to the 
