@@ -97,12 +97,10 @@ export class TranslateTestingModule implements ModuleWithProviders {
       new TranslateDefaultParser(),
       new FakeMissingTranslationHandler(),
       true,
-      true
+      true,
+      false,
+      this._defaultLanguage
     );
-
-    if (this._defaultLanguage) {
-      translateService.setDefaultLang(this._defaultLanguage);
-    }
 
     return [
       {
