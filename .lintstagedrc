@@ -6,7 +6,7 @@
   ],
   "projects/testing/src/**/*.ts": [
     "prettier --write",
-    "ng lint testing --fix",
+    "ng lint testing --fix --files",
     "git add"
   ]
 }

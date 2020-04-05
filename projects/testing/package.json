@@ -21,9 +21,9 @@
     "test"
   ],
   "peerDependencies": {
-    "@angular/common": "^8.0.0-rc.0 || ^8.0.0",
-    "@angular/core": "^8.0.0-rc.0 || ^8.0.0",
-    "@ngx-translate/core": "^11.0.0",
-    "rxjs": "^6.3.3"
+    "@angular/common": "^8.0.0-rc.0 || ^9.0.0-rc.0 || >=8.0.0 <10.0.0",
+    "@angular/core": "^8.0.0-rc.0 || ^9.0.0-rc.0 || >=8.0.0 <10.0.0",
+    "@ngx-translate/core": ">=12.0.0",
+    "rxjs": ">=6.3.3"
   }
 }
