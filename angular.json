@@ -79,6 +79,11 @@
               "src/favicon.ico",
               "src/assets"
             ]
+          },
+          "configurations": {
+            "headless": {
+              "browsers": "ChromeCI"
+            }
           }
         },
         "lint": {
@@ -146,6 +151,11 @@
             "main": "projects/testing/src/test.ts",
             "tsConfig": "projects/testing/tsconfig.spec.json",
             "karmaConfig": "projects/testing/karma.conf.js"
+          },
+          "configurations": {
+            "headless": {
+              "browsers": "ChromeCI"
+            }
           }
         },
         "lint": {
