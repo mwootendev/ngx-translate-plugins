@@ -23,7 +23,7 @@ import { LanguageTranslations, Translations } from './translations.model';
   imports: [TranslateModule],
   exports: [TranslateModule]
 })
-export class TranslateTestingModule implements ModuleWithProviders {
+export class TranslateTestingModule implements ModuleWithProviders<TranslateTestingModule> {
   private _translations: Translations = {};
 
   private _defaultLanguage: string;
