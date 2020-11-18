@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "path": "projects/testing",
+      "name": "@ngx-translate-plugins/testing"
+    },
+    {
+      "path": "src",
+      "name": "Demo Application"
+    },
+    {
+      "path": ".",
+      "name": "Project Root"
+    }
+  ]
+}
