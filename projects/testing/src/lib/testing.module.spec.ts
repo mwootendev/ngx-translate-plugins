@@ -1,4 +1,4 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { TranslateTestingModule } from '../public_api';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -173,26 +173,29 @@ describe('TranslateTestingModule', () => {
         });
 
         describe('with additional translations', () => {
-          it('should merge the translations for the language', async(() => {
-            const FAREWELL_KEY = 'farewell';
-            const ADDITIONAL_ENGLISH_TRANSLATIONS = {
-              [FAREWELL_KEY]: 'Goodbye'
-            };
-            translateModule.withTranslations(ENGLISH_LANGUAGE, ADDITIONAL_ENGLISH_TRANSLATIONS);
-            const translateService = translateModule.providers[0].useValue;
-            translateService
-              .getTranslation(ENGLISH_LANGUAGE)
-              .toPromise()
-              .then(translations => {
-                expect(translations).toBeTruthy();
-                expect(translations[GREETING_KEY]).toEqual(
-                  TRANSLATIONS[ENGLISH_LANGUAGE][GREETING_KEY]
-                );
-                expect(translations[FAREWELL_KEY]).toEqual(
-                  ADDITIONAL_ENGLISH_TRANSLATIONS[FAREWELL_KEY]
-                );
-              });
-          }));
+          it(
+            'should merge the translations for the language',
+            waitForAsync(() => {
+              const FAREWELL_KEY = 'farewell';
+              const ADDITIONAL_ENGLISH_TRANSLATIONS = {
+                [FAREWELL_KEY]: 'Goodbye'
+              };
+              translateModule.withTranslations(ENGLISH_LANGUAGE, ADDITIONAL_ENGLISH_TRANSLATIONS);
+              const translateService = translateModule.providers[0].useValue;
+              translateService
+                .getTranslation(ENGLISH_LANGUAGE)
+                .toPromise()
+                .then(translations => {
+                  expect(translations).toBeTruthy();
+                  expect(translations[GREETING_KEY]).toEqual(
+                    TRANSLATIONS[ENGLISH_LANGUAGE][GREETING_KEY]
+                  );
+                  expect(translations[FAREWELL_KEY]).toEqual(
+                    ADDITIONAL_ENGLISH_TRANSLATIONS[FAREWELL_KEY]
+                  );
+                });
+            })
+          );
         });
       });
 
