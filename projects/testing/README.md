@@ -19,6 +19,7 @@ Currently, `ngx-translate-testing` is compatible with Angular 6+ and `@ngx-trans
 |  9.0.0  |        12.0.0       |         4.0.0         |
 | 10.0.0  |        13.0.0       |         5.0.0         |
 | 11.0.0  |        13.0.0       |         5.1.0         |
+| 12.0.0  |        13.0.0       |         5.2.0         |
 
 
 The `ngx-translate-testing` module needs to be installed as a test dependency using your favorite NPM client.
@@ -122,3 +123,4 @@ Licensed under MIT
 * Michael Wooten ([@mwootendev](https://github.com/mwootendev))
 * Paulo Soares ([@7jpsan](https://github.com/7jpsan))
 * Paul Iannello ([paul-kr](https://github.com/paul-kr))
+* Arnaud Tiérant ([@atierant](https://github.com/atierant))
