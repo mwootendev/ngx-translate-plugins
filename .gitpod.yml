@@ -1,0 +1,7 @@
+tasks:
+  - init: yarn install && yarn run build
+    command: yarn run start
+image:
+  file: .gitpod.Dockerfile
+ports:
+  - port: 4200

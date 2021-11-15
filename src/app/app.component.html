@@ -1,0 +1,25 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to The Translate Plugins Demo Application.
+  </h1>
+</div>
+<h2>Here are some translations: </h2>
+<ul>
+  <li>
+    <h2 id="directive-translation" translate>phrases.greeting</h2>
+  </li>
+  <li>
+    <h2 id="pipe-translation">{{ 'phrases.farewell' | translate }}</h2>
+  </li>
+  <li>
+    <h2 id="service-translation">{{please | async}}</h2>
+  </li>
+  <li>
+    <h2 id="thanks-plural-female-translation" translate [translateParams]="{count: 2, gender: 'female'}">phrases.thanks</h2>
+  </li>
+  <li>
+    <h2 id="thanks-singular-male-translation" translate [translateParams]="{count: 1, gender: 'male'}">phrases.thanks</h2>
+  </li>
+</ul>
+

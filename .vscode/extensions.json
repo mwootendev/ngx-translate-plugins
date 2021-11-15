@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "github.vscode-pull-request-github",
+    "johnpapa.angular-essentials",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "visualstudioexptteam.vscodeintellicode"
+  ]
+}
