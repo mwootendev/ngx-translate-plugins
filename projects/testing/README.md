@@ -20,7 +20,7 @@ Currently, `ngx-translate-testing` is compatible with Angular 6+ and `@ngx-trans
 | 10.0.0  |        13.0.0       |         5.0.0         |
 | 11.0.0  |        13.0.0       |         5.1.0         |
 | 12.0.0  |        13.0.0       |         5.2.0         |
-
+| 13.0.0  |        14.0.0       |         6.0.0         |
 
 The `ngx-translate-testing` module needs to be installed as a test dependency using your favorite NPM client.
 
