@@ -124,3 +124,4 @@ Licensed under MIT
 * Paulo Soares ([@7jpsan](https://github.com/7jpsan))
 * Paul Iannello ([paul-kr](https://github.com/paul-kr))
 * Arnaud Tiérant ([@atierant](https://github.com/atierant))
+* Sergio ([@sjarmero](https://github.com/sjarmero))

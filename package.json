@@ -7,7 +7,7 @@
     "build": "yarn run build:lib && yarn run build:app",
     "build:app": "ng build",
     "build:lib": "ng build testing",
-    "build:lib:prod": "yarn run build:lib --prod",
+    "build:lib:prod": "yarn run build:lib --configuration production",
     "clean": "rimraf dist coverage",
     "coverage:app": "yarn run test:app --code-coverage true",
     "coverage:lib": "yarn run test:lib --code-coverage true",
