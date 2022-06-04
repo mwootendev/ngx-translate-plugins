@@ -26,6 +26,7 @@ node_modules
 !.vscode/extensions.json
 
 # misc
+.angular
 /.sass-cache
 /connect.lock
 /coverage
