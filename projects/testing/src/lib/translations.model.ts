@@ -1,5 +1,6 @@
 export declare type LanguageTranslation =
   | string
+  | string[]
   | { [translationKey: string]: LanguageTranslation };
 
 /**
