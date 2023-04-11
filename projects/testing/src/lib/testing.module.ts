@@ -30,6 +30,8 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
 
   private _compiler: TranslateCompiler;
 
+  private _parser: TranslateDefaultParser;
+
   /**
    * Creates a new instance of the {TranslateTestingModule} with translations for the specified language.
    *
@@ -94,7 +96,7 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
       null,
       new TestTranslateLoader(this._translations),
       this._compiler || new TranslateFakeCompiler(),
-      new TranslateDefaultParser(),
+      this._parser || new TranslateDefaultParser(),
       new FakeMissingTranslationHandler(),
       true,
       true,
@@ -183,6 +185,24 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
    */
   public withCompiler(compiler: TranslateCompiler): TranslateTestingModule {
     this._compiler = compiler;
+    return this;
+  }
+
+  /**
+   * Updates the {TranslateTestingModule} to provide a {TranslateService} that will
+   * use the provided {TranslateParser} to parse the test translations.
+   *
+   * @example
+   *
+   * TranslateTestingModule.withTranslations('en', {key: 'content'})
+   *   .withParser(new CustomTranslateDefaultParser());
+   *
+   * @param parser the parser to use to parse the test translations.
+   * @returns the instance that can be used to chain additional configuration.
+   * @memberof TranslateTestingModule
+   */
+  public withParser(parser: TranslateDefaultParser): TranslateTestingModule {
+    this._parser = parser;
     return this;
   }
 

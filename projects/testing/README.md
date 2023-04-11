@@ -116,6 +116,16 @@ TranslateTestingModule
   .withCompiler(new TranslateMessageFormatCompiler())
 ```
 
+#### Custom Parser
+
+The default parser used in the `TranslateTestingModule` it is an instance of `TranslateDefaultParser`. If your translations use a custom parser, you can specify the parser with the `withParser()` instance method.
+
+```ts
+TranslateTestingModule
+  .withTranslations("en", require("../../assets/i18n/en.json"))
+  .withParser(new CustomTranslateDefaultParser())
+```
+
 ## License
 Licensed under MIT
 
