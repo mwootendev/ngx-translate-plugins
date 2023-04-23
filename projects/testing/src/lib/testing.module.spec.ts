@@ -308,5 +308,23 @@ describe('TranslateTestingModule', () => {
         expect(translateService.compiler).toEqual(translateCompiler);
       });
     });
+
+    describe('withParser()', () => {
+      it('should be a function', () => {
+        expect(translateModule.withParser).toBeTruthy();
+        expect(typeof translateModule.withParser).toEqual('function');
+      });
+
+      it('should override the parser for the provided TranslateService instance', () => {
+        const translateParser = jasmine.createSpyObj('TranslateParser', ['getValue']);
+        translateModule.withParser(translateParser);
+
+        expect(translateModule.providers).toBeTruthy();
+        expect(translateModule.providers.length).toBe(1);
+
+        const translateService = translateModule.providers[0].useValue;
+        expect(translateService.parser).toEqual(translateParser);
+      });
+    });
   });
 });
