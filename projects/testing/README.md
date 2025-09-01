@@ -127,6 +127,26 @@ TranslateTestingModule
   .withParser(new CustomTranslateDefaultParser())
 ```
 
+#### Placeholder translations
+
+In some cases the translations are not kept in the code repository.
+They can, for example, be pulled at runtime from some other source.
+It can be then useful to not have to hardcode the translation keys in your tests, and instead use placeholders.
+
+```ts
+TranslateTestingModule.withPlaceholderTranslations()
+```
+
+Then the test cases can be written using a provided function that returns the placeholder.
+
+```ts
+import { placeholderTranslationFor } from 'ngx-translate-testing';
+// ...
+expect(someText()).toContain(placeholderTranslationFor('some key'))
+expect(someOtherText()).toContain(placeholderTranslationFor('some other key with {{aParam}}', {aParam: 'foobar'}))
+```
+
+
 ## License
 Licensed under MIT
 

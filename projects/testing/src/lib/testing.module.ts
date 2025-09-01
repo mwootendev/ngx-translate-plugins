@@ -6,11 +6,12 @@ import {
   TranslateFakeCompiler,
   TranslateModule,
   TranslateService,
-  TranslateCompiler
+  TranslateCompiler,
 } from '@ngx-translate/core';
 
 import { TestTranslateLoader } from './test-translate-loader.service';
 import { LanguageTranslations, Translations } from './translations.model';
+import { PlaceholderGeneratingMissingTranslationHandler } from './placeholder-generating-missing-translation-handler';
 
 /**
  * The TranslateTestingModule provides the {TranslateModule} as well as a
@@ -21,7 +22,7 @@ import { LanguageTranslations, Translations } from './translations.model';
  */
 @NgModule({
   imports: [TranslateModule],
-  exports: [TranslateModule]
+  exports: [TranslateModule],
 })
 export class TranslateTestingModule implements ModuleWithProviders<TranslateTestingModule> {
   private _translations: Translations = {};
@@ -87,6 +88,10 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
     return translateTestingModule.withTranslations(languageOrTranslations);
   }
 
+  static withPlaceholderTranslations() {
+    return new PlaceholderBasedTranslateTestingModule();
+  }
+
   public get ngModule() {
     return TranslateTestingModule;
   }
@@ -107,8 +112,8 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
     return [
       {
         provide: TranslateService,
-        useValue: translateService
-      }
+        useValue: translateService,
+      },
     ];
   }
 
@@ -163,7 +168,7 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
       this.addTranslations(languageOrTranslations, translations);
       this._defaultLanguage = languageOrTranslations;
     } else if (languageOrTranslations) {
-      Object.keys(languageOrTranslations).forEach(language =>
+      Object.keys(languageOrTranslations).forEach((language) =>
         this.addTranslations(language, languageOrTranslations[language])
       );
     }
@@ -233,10 +238,37 @@ export class TranslateTestingModule implements ModuleWithProviders<TranslateTest
     if (this._translations[language]) {
       this._translations[language] = {
         ...this._translations[language],
-        ...translations
+        ...translations,
       };
     } else {
       this._translations[language] = translations;
     }
   }
+}
+
+@NgModule({
+  imports: [TranslateModule],
+  exports: [TranslateModule],
+})
+/* tslint:disable */
+export class PlaceholderBasedTranslateTestingModule
+  implements ModuleWithProviders<PlaceholderBasedTranslateTestingModule>
+{
+  ngModule = PlaceholderBasedTranslateTestingModule;
+  providers = [
+    {
+      provide: TranslateService,
+      useValue: new TranslateService(
+        null,
+        new TestTranslateLoader({}),
+        new TranslateFakeCompiler(),
+        new TranslateDefaultParser(),
+        new PlaceholderGeneratingMissingTranslationHandler(),
+        true,
+        true,
+        false,
+        'en'
+      ),
+    },
+  ];
 }

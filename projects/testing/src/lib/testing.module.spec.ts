@@ -1,20 +1,21 @@
-import { TestBed, inject, waitForAsync } from '@angular/core/testing';
-import { TranslateTestingModule } from '../public_api';
+import { waitForAsync } from '@angular/core/testing';
+import { PlaceholderBasedTranslateTestingModule, TranslateTestingModule } from '../public_api';
 import { TranslateService } from '@ngx-translate/core';
+import { PlaceholderGeneratingMissingTranslationHandler } from './placeholder-generating-missing-translation-handler';
 
 describe('TranslateTestingModule', () => {
   const GREETING_KEY = 'greeting';
   const ENGLISH_LANGUAGE = 'en';
   const ENGLISH_TRANSLATIONS = {
-    [GREETING_KEY]: 'Hello'
+    [GREETING_KEY]: 'Hello',
   };
   const SPANISH_LANGUAGE = 'es';
   const SPANISH_TRANSLATIONS = {
-    [GREETING_KEY]: 'Hola'
+    [GREETING_KEY]: 'Hola',
   };
   const TRANSLATIONS = {
     [ENGLISH_LANGUAGE]: ENGLISH_TRANSLATIONS,
-    [SPANISH_LANGUAGE]: SPANISH_TRANSLATIONS
+    [SPANISH_LANGUAGE]: SPANISH_TRANSLATIONS,
   };
   let translateModule: TranslateTestingModule;
 
@@ -112,6 +113,43 @@ describe('TranslateTestingModule', () => {
         });
       });
     });
+
+    describe('withPlaceholderTranslations()', () => {
+      let module: PlaceholderBasedTranslateTestingModule;
+
+      beforeEach(() => {
+        module = TranslateTestingModule.withPlaceholderTranslations();
+      });
+
+      it('should initialize the translate module', () => {
+        expect(module).toBeTruthy();
+        expect(module.ngModule).toEqual(PlaceholderBasedTranslateTestingModule);
+      });
+
+      it('should provide a TranslateService', () => {
+        const providers = module.providers;
+
+        expect(providers).toBeTruthy();
+        expect(providers.length).toBe(1);
+
+        expect(providers[0].provide).toEqual(TranslateService);
+        expect(providers[0].useValue).toBeInstanceOf(TranslateService);
+      });
+
+      describe('provided TranslateService', () => {
+        let translateService: TranslateService;
+
+        beforeEach(() => {
+          translateService = module.providers[0].useValue;
+        });
+
+        it('should be configured to return placeholders instead of translations', () => {
+          expect(translateService.missingTranslationHandler).toBeInstanceOf(
+            PlaceholderGeneratingMissingTranslationHandler
+          );
+        });
+      });
+    });
   });
 
   describe('instance methods', () => {
@@ -173,29 +211,26 @@ describe('TranslateTestingModule', () => {
         });
 
         describe('with additional translations', () => {
-          it(
-            'should merge the translations for the language',
-            waitForAsync(() => {
-              const FAREWELL_KEY = 'farewell';
-              const ADDITIONAL_ENGLISH_TRANSLATIONS = {
-                [FAREWELL_KEY]: 'Goodbye'
-              };
-              translateModule.withTranslations(ENGLISH_LANGUAGE, ADDITIONAL_ENGLISH_TRANSLATIONS);
-              const translateService = translateModule.providers[0].useValue;
-              translateService
-                .getTranslation(ENGLISH_LANGUAGE)
-                .toPromise()
-                .then(translations => {
-                  expect(translations).toBeTruthy();
-                  expect(translations[GREETING_KEY]).toEqual(
-                    TRANSLATIONS[ENGLISH_LANGUAGE][GREETING_KEY]
-                  );
-                  expect(translations[FAREWELL_KEY]).toEqual(
-                    ADDITIONAL_ENGLISH_TRANSLATIONS[FAREWELL_KEY]
-                  );
-                });
-            })
-          );
+          it('should merge the translations for the language', waitForAsync(() => {
+            const FAREWELL_KEY = 'farewell';
+            const ADDITIONAL_ENGLISH_TRANSLATIONS = {
+              [FAREWELL_KEY]: 'Goodbye',
+            };
+            translateModule.withTranslations(ENGLISH_LANGUAGE, ADDITIONAL_ENGLISH_TRANSLATIONS);
+            const translateService = translateModule.providers[0].useValue;
+            translateService
+              .getTranslation(ENGLISH_LANGUAGE)
+              .toPromise()
+              .then((translations) => {
+                expect(translations).toBeTruthy();
+                expect(translations[GREETING_KEY]).toEqual(
+                  TRANSLATIONS[ENGLISH_LANGUAGE][GREETING_KEY]
+                );
+                expect(translations[FAREWELL_KEY]).toEqual(
+                  ADDITIONAL_ENGLISH_TRANSLATIONS[FAREWELL_KEY]
+                );
+              });
+          }));
         });
       });
 
@@ -249,18 +284,18 @@ describe('TranslateTestingModule', () => {
       });
 
       it('should have no effect if the translations are null', () => {
-        translateModule = TranslateTestingModule.withTranslations(TRANSLATIONS).withTranslations(
-          null
-        );
+        translateModule =
+          TranslateTestingModule.withTranslations(TRANSLATIONS).withTranslations(null);
         expect(translateModule).toBeTruthy();
       });
     });
 
     describe('withDefaultLanguage()', () => {
       beforeEach(() => {
-        translateModule = TranslateTestingModule.withTranslations(TRANSLATIONS).withDefaultLanguage(
-          SPANISH_LANGUAGE
-        );
+        translateModule =
+          TranslateTestingModule.withTranslations(TRANSLATIONS).withDefaultLanguage(
+            SPANISH_LANGUAGE
+          );
       });
 
       describe('provided TranslateService', () => {
@@ -297,7 +332,7 @@ describe('TranslateTestingModule', () => {
       it('should override the compiler for the provided TranslateService instance', () => {
         const translateCompiler = jasmine.createSpyObj('TranslateCompiler', [
           'compile',
-          'compileTranslations'
+          'compileTranslations',
         ]);
         translateModule.withCompiler(translateCompiler);
 
