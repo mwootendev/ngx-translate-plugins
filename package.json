@@ -100,10 +100,6 @@
     "@angular/cli": {
       "tar": "^7.5.11"
     },
-    "jsdom": {
-      "http-proxy-agent": {
-        "@tootallnate/once": "3.0.1"
-      }
-    }
+    "@tootallnate/once": "3.0.1"
   }
 }
