@@ -7,26 +7,18 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "ES2022",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
+    "typeRoots": ["node_modules/@types"],
     "skipLibCheck": true,
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "paths": {
-      "ngx-translate-testing": [
-        "dist/testing"
-      ],
-      "ngx-translate-testing/*": [
-        "dist/testing/*"
-      ]
+      "ngx-translate-testing": ["dist/testing"],
+      "ngx-translate-testing/*": ["dist/testing/*"]
     },
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "strict": false
   }
 }

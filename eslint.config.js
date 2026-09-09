@@ -36,6 +36,7 @@ module.exports = tseslint.config(
       '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off', // fix
       '@typescript-eslint/no-unused-expressions': 'error',
       '@typescript-eslint/no-require-imports': 'off',
+      '@angular-eslint/prefer-inject': 'off',
       '@typescript-eslint/no-unused-vars': [
         'off',
         {
