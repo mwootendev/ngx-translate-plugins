@@ -1,21 +1,18 @@
-import { TestBed, inject, waitForAsync } from '@angular/core/testing';
-import { TranslateTestingModule } from '../public_api';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateCompiler, TranslateParser } from '@ngx-translate/core';
+import { TranslateTestingModule } from './testing.module';
+import { waitForAsync, TestBed } from '@angular/core/testing';
+
+const ENGLISH_LANGUAGE = 'en';
+const SPANISH_LANGUAGE = 'es';
+const GREETING_KEY = 'greeting';
+const ENGLISH_TRANSLATIONS: Record<string, string> = { [GREETING_KEY]: 'Hello' };
+const SPANISH_TRANSLATIONS: Record<string, string> = { [GREETING_KEY]: 'Hola' };
+const TRANSLATIONS: Record<string, Record<string, string>> = {
+  [ENGLISH_LANGUAGE]: ENGLISH_TRANSLATIONS,
+  [SPANISH_LANGUAGE]: SPANISH_TRANSLATIONS
+};
 
 describe('TranslateTestingModule', () => {
-  const GREETING_KEY = 'greeting';
-  const ENGLISH_LANGUAGE = 'en';
-  const ENGLISH_TRANSLATIONS = {
-    [GREETING_KEY]: 'Hello'
-  };
-  const SPANISH_LANGUAGE = 'es';
-  const SPANISH_TRANSLATIONS = {
-    [GREETING_KEY]: 'Hola'
-  };
-  const TRANSLATIONS = {
-    [ENGLISH_LANGUAGE]: ENGLISH_TRANSLATIONS,
-    [SPANISH_LANGUAGE]: SPANISH_TRANSLATIONS
-  };
   let translateModule: TranslateTestingModule;
 
   describe('static construction', () => {
@@ -36,23 +33,28 @@ describe('TranslateTestingModule', () => {
 
         it('should provide a TranslateService', () => {
           const providers = translateModule.providers;
-
           expect(providers).toBeTruthy();
-          expect(providers.length).toBe(1);
+          expect(providers.length).toBeGreaterThan(0);
 
-          expect(providers[0].provide).toEqual(TranslateService);
-          expect(providers[0].useValue instanceof TranslateService).toBeTruthy();
+          let hasTranslateService = false;
+          for (let p of providers as any[]) {
+            if (p === TranslateService || p.provide === TranslateService) hasTranslateService = true;
+          }
+          expect(hasTranslateService).toBeTruthy();
         });
 
         describe('provided TranslateService', () => {
           let translateService: TranslateService;
 
           beforeEach(() => {
-            translateService = translateModule.providers[0].useValue;
+            TestBed.configureTestingModule({
+                imports: [translateModule]
+            });
+            translateService = TestBed.inject(TranslateService);
           });
 
           it('should set the default language to the one provided', () => {
-            expect(translateService.defaultLang).toBe(ENGLISH_LANGUAGE);
+            expect(translateService.fallbackLang()).toBe(ENGLISH_LANGUAGE);
           });
 
           it('should initialize the translations for the language', () => {
@@ -76,19 +78,24 @@ describe('TranslateTestingModule', () => {
 
         it('should provide a TranslateService', () => {
           const providers = translateModule.providers;
-
           expect(providers).toBeTruthy();
-          expect(providers.length).toBe(1);
+          expect(providers.length).toBeGreaterThan(0);
 
-          expect(providers[0].provide).toEqual(TranslateService);
-          expect(providers[0].useValue instanceof TranslateService).toBeTruthy();
+          let hasTranslateService = false;
+          for (let p of providers as any[]) {
+            if (p === TranslateService || p.provide === TranslateService) hasTranslateService = true;
+          }
+          expect(hasTranslateService).toBeTruthy();
         });
 
         describe('provided TranslateService', () => {
           let translateService: TranslateService;
 
           beforeEach(() => {
-            translateService = translateModule.providers[0].useValue;
+            TestBed.configureTestingModule({
+                imports: [translateModule]
+            });
+            translateService = TestBed.inject(TranslateService);
             translateService.use(ENGLISH_LANGUAGE);
           });
 
@@ -97,7 +104,7 @@ describe('TranslateTestingModule', () => {
           });
 
           it('should set the default language to the FIRST language translations provided', () => {
-            expect(translateService.defaultLang).toBe(ENGLISH_LANGUAGE);
+            expect(translateService.fallbackLang()).toBe(ENGLISH_LANGUAGE);
           });
 
           it('should initialize the translations', () => {
@@ -146,23 +153,28 @@ describe('TranslateTestingModule', () => {
 
         it('should provide a TranslateService', () => {
           const providers = translateModule.providers;
-
           expect(providers).toBeTruthy();
-          expect(providers.length).toBe(1);
+          expect(providers.length).toBeGreaterThan(0);
 
-          expect(providers[0].provide).toEqual(TranslateService);
-          expect(providers[0].useValue instanceof TranslateService).toBeTruthy();
+          let hasTranslateService = false;
+          for (let p of providers as any[]) {
+            if (p === TranslateService || p.provide === TranslateService) hasTranslateService = true;
+          }
+          expect(hasTranslateService).toBeTruthy();
         });
 
         describe('provided TranslateService', () => {
           let translateService: TranslateService;
 
           beforeEach(() => {
-            translateService = translateModule.providers[0].useValue;
+            TestBed.configureTestingModule({
+                imports: [translateModule]
+            });
+            translateService = TestBed.inject(TranslateService);
           });
 
           it('should set the default language to the one provided', () => {
-            expect(translateService.defaultLang).toBe(ENGLISH_LANGUAGE);
+            expect(translateService.fallbackLang()).toBe(ENGLISH_LANGUAGE);
           });
 
           it('should initialize the translations for the language', () => {
@@ -181,19 +193,22 @@ describe('TranslateTestingModule', () => {
                 [FAREWELL_KEY]: 'Goodbye'
               };
               translateModule.withTranslations(ENGLISH_LANGUAGE, ADDITIONAL_ENGLISH_TRANSLATIONS);
-              const translateService = translateModule.providers[0].useValue;
-              translateService
-                .getTranslation(ENGLISH_LANGUAGE)
-                .toPromise()
-                .then(translations => {
-                  expect(translations).toBeTruthy();
-                  expect(translations[GREETING_KEY]).toEqual(
-                    TRANSLATIONS[ENGLISH_LANGUAGE][GREETING_KEY]
-                  );
-                  expect(translations[FAREWELL_KEY]).toEqual(
-                    ADDITIONAL_ENGLISH_TRANSLATIONS[FAREWELL_KEY]
-                  );
-                });
+
+              TestBed.configureTestingModule({
+                imports: [translateModule]
+              });
+              let translateService = TestBed.inject(TranslateService);
+
+              translateService.use(ENGLISH_LANGUAGE);
+
+              const translations: any = translateService.getTranslations(ENGLISH_LANGUAGE);
+              expect(translations).toBeTruthy();
+              expect(translations[GREETING_KEY]).toEqual(
+                TRANSLATIONS[ENGLISH_LANGUAGE][GREETING_KEY]
+              );
+              expect(translations[FAREWELL_KEY]).toEqual(
+                ADDITIONAL_ENGLISH_TRANSLATIONS[FAREWELL_KEY]
+              );
             })
           );
         });
@@ -212,19 +227,24 @@ describe('TranslateTestingModule', () => {
 
         it('should provide a TranslateService', () => {
           const providers = translateModule.providers;
-
           expect(providers).toBeTruthy();
-          expect(providers.length).toBe(1);
+          expect(providers.length).toBeGreaterThan(0);
 
-          expect(providers[0].provide).toEqual(TranslateService);
-          expect(providers[0].useValue instanceof TranslateService).toBeTruthy();
+          let hasTranslateService = false;
+          for (let p of providers as any[]) {
+            if (p === TranslateService || p.provide === TranslateService) hasTranslateService = true;
+          }
+          expect(hasTranslateService).toBeTruthy();
         });
 
         describe('provided TranslateService', () => {
           let translateService: TranslateService;
 
           beforeEach(() => {
-            translateService = translateModule.providers[0].useValue;
+            TestBed.configureTestingModule({
+                imports: [translateModule]
+            });
+            translateService = TestBed.inject(TranslateService);
             translateService.use(ENGLISH_LANGUAGE);
           });
 
@@ -233,7 +253,7 @@ describe('TranslateTestingModule', () => {
           });
 
           it('should set the default language to the FIRST language translations provided', () => {
-            expect(translateService.defaultLang).toBe(ENGLISH_LANGUAGE);
+            expect(translateService.fallbackLang()).toBe(ENGLISH_LANGUAGE);
           });
 
           it('should initialize the translations', () => {
@@ -250,7 +270,7 @@ describe('TranslateTestingModule', () => {
 
       it('should have no effect if the translations are null', () => {
         translateModule = TranslateTestingModule.withTranslations(TRANSLATIONS).withTranslations(
-          null
+          null as any
         );
         expect(translateModule).toBeTruthy();
       });
@@ -267,11 +287,14 @@ describe('TranslateTestingModule', () => {
         let translateService: TranslateService;
 
         beforeEach(() => {
-          translateService = translateModule.providers[0].useValue;
+          TestBed.configureTestingModule({
+              imports: [translateModule]
+          });
+          translateService = TestBed.inject(TranslateService);
         });
 
         it('should override the default language', () => {
-          expect(translateService.defaultLang).toBe(SPANISH_LANGUAGE);
+          expect(translateService.fallbackLang()).toBe(SPANISH_LANGUAGE);
         });
 
         it('should use the translations for the overridden language', () => {
@@ -282,9 +305,12 @@ describe('TranslateTestingModule', () => {
       });
 
       it('will retain a configured language if a null one is provided', () => {
-        translateModule.withDefaultLanguage(null);
-        const translateService = translateModule.providers[0].useValue;
-        expect(translateService.defaultLang).toEqual(SPANISH_LANGUAGE);
+        translateModule.withDefaultLanguage(null as any);
+        TestBed.configureTestingModule({
+              imports: [translateModule]
+          });
+        let translateService = TestBed.inject(TranslateService);
+        expect(translateService.fallbackLang()).toEqual(SPANISH_LANGUAGE);
       });
     });
 
@@ -301,11 +327,11 @@ describe('TranslateTestingModule', () => {
         ]);
         translateModule.withCompiler(translateCompiler);
 
-        expect(translateModule.providers).toBeTruthy();
-        expect(translateModule.providers.length).toBe(1);
-
-        const translateService = translateModule.providers[0].useValue;
-        expect(translateService.compiler).toEqual(translateCompiler);
+        TestBed.configureTestingModule({
+              imports: [translateModule]
+          });
+        const compiler = TestBed.inject(TranslateCompiler);
+        expect(compiler).toEqual(translateCompiler);
       });
     });
 
@@ -319,11 +345,11 @@ describe('TranslateTestingModule', () => {
         const translateParser = jasmine.createSpyObj('TranslateParser', ['getValue']);
         translateModule.withParser(translateParser);
 
-        expect(translateModule.providers).toBeTruthy();
-        expect(translateModule.providers.length).toBe(1);
-
-        const translateService = translateModule.providers[0].useValue;
-        expect(translateService.parser).toEqual(translateParser);
+        TestBed.configureTestingModule({
+              imports: [translateModule]
+          });
+        const parser = TestBed.inject(TranslateParser);
+        expect(parser).toEqual(translateParser);
       });
     });
   });
