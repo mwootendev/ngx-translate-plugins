@@ -3,7 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile",
     // Update 'VARIANT' to pick a Node version. Rebuild the container
-    // if it already exists to update. Available variants: 10, 12, 14
+    // if it already exists to update. Available variants: 18, 20, 22
     "args": {
       "VARIANT": "20"
     }

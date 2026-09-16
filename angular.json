@@ -53,18 +53,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-translate-plugins:build"
+            "buildTarget": "ngx-translate-plugins:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-translate-plugins:build:production"
+              "buildTarget": "ngx-translate-plugins:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-translate-plugins:build"
+            "buildTarget": "ngx-translate-plugins:build"
           }
         },
         "test": {
