@@ -1,5 +1,5 @@
 # Update the VARIANT arg in devcontainer.json to pick a Node.js version: 18, 20, 22
-ARG VARIANT=18
+ARG VARIANT=20
 FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:${VARIANT}
 
 # [Optional] Uncomment this section to install additional OS packages.
